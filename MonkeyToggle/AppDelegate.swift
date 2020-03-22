@@ -15,24 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         toggleIcon()
         statusItem.button?.action = #selector(statusBarIconClicked)
-    }
-    
-    private func toggleIcon() {
-        let createDesktop = "CreateDesktop"
-        let finderDefault = UserDefaults(suiteName: "com.apple.finder")
-        let icon: String
-        
-        if finderDefault?.bool(forKey: createDesktop) == true {
-            icon = "monkey-open"
-        } else {
-            icon = "monkey-closed"
-        }
-        
-        statusItem.button?.image = NSImage(named:NSImage.Name(icon))
-        statusItem.button?.image?.size = NSSize(width: 19, height: 18)
+        statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
     }
     
     @objc func statusBarIconClicked() {
+        let event = NSApp.currentEvent!
+        
+        if event.type == NSEvent.EventType.rightMouseUp {
+            NSApp.terminate(nil)
+        } else {
+            toggleDesktopIcons()
+        }
+    }
+    
+    private func toggleDesktopIcons() {
         // Write Defaults
         let createDesktop = "CreateDesktop"
         let finderDefault = UserDefaults(suiteName: "com.apple.finder")
@@ -50,9 +46,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         killTask.launch()
         killTask.waitUntilExit()
+        
         toggleIcon()
     }
     
+    private func toggleIcon() {
+        let createDesktop = "CreateDesktop"
+        let finderDefault = UserDefaults(suiteName: "com.apple.finder")
+        let icon: String
+        
+        if finderDefault?.bool(forKey: createDesktop) == true {
+            icon = "monkey-open"
+        } else {
+            icon = "monkey-closed"
+        }
+        
+        statusItem.button?.image = NSImage(named:NSImage.Name(icon))
+        statusItem.button?.image?.size = NSSize(width: 19, height: 18)
+    }
     
 }
 
