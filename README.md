@@ -1,2 +1,12 @@
 # MonkeyToggle
-Show/hide desktop icons
+
+<p align="center">
+  
+ <img src="Assets/AppIcon.png" height="100px"/>
+ 
+</p>
+
+#### Show/hide desktop icons
+
+- Click to toggle
+- Right click to quit app
