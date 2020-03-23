@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  MonkeySeeMonkeyDo
+//  MonkeyToggle
 //
 //  Created by Arun Sasidharan on 22/03/20.
 //
@@ -14,21 +14,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         toggleIcon()
-        statusItem.button?.action = #selector(statusBarIconClicked)
+        statusItem.button?.action = #selector(statusBarIconClicked(_:))
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
     }
     
-    @objc func statusBarIconClicked() {
+    @objc func statusBarIconClicked(_ sender: NSStatusBarButton) {
         let event = NSApp.currentEvent!
         
-        if event.type == NSEvent.EventType.rightMouseUp {
-            showMenu()
-        } else {
-            toggleDesktopIcons()
+        switch event.type {
+        case .rightMouseUp: showMenu(sender)
+        case .leftMouseUp: toggleDesktopIcons()
+        default:
+            break
         }
     }
     
-    private func showMenu() {
+    private func showMenu(_ sender: NSStatusBarButton) {
         let menu = NSMenu()
         let twitter = NSMenuItem(title: "@voidmaindev", action: #selector(twitter(_:)), keyEquivalent: "")
         let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
@@ -42,7 +43,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(quit)
         
-        statusItem.menu = menu
+        if let event = NSApplication.shared.currentEvent {
+            NSMenu.popUpContextMenu(menu, with: event, for: sender)
+        }
     }
     
     
