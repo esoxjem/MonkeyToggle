@@ -22,10 +22,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let event = NSApp.currentEvent!
         
         if event.type == NSEvent.EventType.rightMouseUp {
-            NSApp.terminate(nil)
+            showMenu()
         } else {
             toggleDesktopIcons()
         }
+    }
+    
+    private func showMenu() {
+        let menu = NSMenu()
+        let twitter = NSMenuItem(title: "@voidmaindev", action: #selector(twitter(_:)), keyEquivalent: "")
+        let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
+        let quit = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
+        
+        twitter.target = self
+        github.target = self
+        
+        menu.addItem(twitter)
+        menu.addItem(github)
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(quit)
+        
+        statusItem.menu = menu
+    }
+    
+    
+    @objc private func twitter(_ sender: NSMenuItem) {
+        let url = URL(string: "https://www.twitter.com/voidmaindev")!
+        NSWorkspace.shared.open(url)
+    }
+    
+    @objc private func github(_ sender: NSMenuItem) {
+        let url = URL(string: "https://www.github.com/esoxjem/MonkeyToggle")!
+        NSWorkspace.shared.open(url)
     }
     
     private func toggleDesktopIcons() {
