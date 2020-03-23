@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "monkey-open.pdf",
+      "filename" : "visible.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "visible@2x.png",
       "scale" : "2x"
     },
     {

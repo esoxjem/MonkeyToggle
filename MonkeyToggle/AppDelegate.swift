@@ -29,7 +29,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func toggleDesktopIcons() {
-        // Write Defaults
+        writeToDefaults()
+        restartFinder()
+        toggleIcon()
+    }
+    
+    private func writeToDefaults() {
         let createDesktop = "CreateDesktop"
         let finderDefault = UserDefaults(suiteName: "com.apple.finder")
         
@@ -38,16 +43,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             finderDefault?.set(true, forKey: createDesktop)
         }
-        
-        // restart Finder
+    }
+    
+    private func restartFinder() {
         let killTask = Process()
         killTask.launchPath = "/usr/bin/killall"
         killTask.arguments = ["Finder"]
         
         killTask.launch()
         killTask.waitUntilExit()
-        
-        toggleIcon()
     }
     
     private func toggleIcon() {
@@ -56,13 +60,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let icon: String
         
         if finderDefault?.bool(forKey: createDesktop) == true {
-            icon = "monkey-open"
+            icon = "visible"
         } else {
-            icon = "monkey-closed"
+            icon = "hidden"
         }
         
         statusItem.button?.image = NSImage(named:NSImage.Name(icon))
-        statusItem.button?.image?.size = NSSize(width: 19, height: 18)
     }
     
 }

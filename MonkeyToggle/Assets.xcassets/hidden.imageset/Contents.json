@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "monkey-closed.pdf",
+      "filename" : "hidden.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "hidden@2x.png",
       "scale" : "2x"
     },
     {
