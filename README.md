@@ -3,6 +3,7 @@
 <p align="center">
   
  <img src="Assets/AppIcon.png" height="100px"/>
+ <img src="Assets/see-no-evil-monkey.png" height="100px"/>
  
 </p>
 
