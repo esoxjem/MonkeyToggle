@@ -7,6 +7,11 @@
 </p>
 
 #### Show/hide desktop icons
-
 - Click to toggle
 - Right click to quit app
+<p>
+  
+ <img src="Assets/demo.gif"/>
+ 
+</p>
+
