@@ -7,7 +7,7 @@
  
 </p>
 
-#### Show/hide desktop icons
+#### Keep your desktop clean, brush everything else under the rug.
 - Click to toggle
 - Right click to quit app
 <p>
