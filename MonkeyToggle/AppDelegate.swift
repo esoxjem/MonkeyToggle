@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func showMenu(_ sender: NSStatusBarButton) {
         let menu = NSMenu()
-        let twitter = NSMenuItem(title: "@voidmaindev", action: #selector(twitter(_:)), keyEquivalent: "")
+        let twitter = NSMenuItem(title: "@ES0XJEM", action: #selector(twitter(_:)), keyEquivalent: "")
         let github = NSMenuItem(title: "GitHub", action: #selector(github(_:)), keyEquivalent: "")
         let quit = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "")
         
@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     @objc private func twitter(_ sender: NSMenuItem) {
-        let url = URL(string: "https://www.twitter.com/voidmaindev")!
+        let url = URL(string: "https://www.twitter.com/es0xjem")!
         NSWorkspace.shared.open(url)
     }
     
